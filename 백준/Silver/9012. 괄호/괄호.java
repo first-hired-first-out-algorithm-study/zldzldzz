@@ -3,8 +3,6 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Stack;
 
 public class Main {
@@ -12,16 +10,16 @@ public class Main {
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 	public static void main(String[] args) throws IOException {
-		int t = Integer.parseInt(br.readLine());
-		List<String> list = new LinkedList<>();
-		for (int i = 0; i < t; i++) {
+		int n = Integer.parseInt(br.readLine());
+		for (int i = 0; i < n; i++) {
 			String line = br.readLine();
 			Stack<Character> stack = new Stack<>();
 			boolean flag = false;
 			for (int j = 0; j < line.length(); j++) {
-				if (line.charAt(j) == '(') {
-					stack.push('(');
-				} else if (line.charAt(j) == ')') {
+				Character ch = line.charAt(j);
+				if (ch == '(') {
+					stack.push(ch);
+				} else if (ch == ')') {
 					if (stack.isEmpty()) {
 						flag = true;
 						break;
@@ -29,15 +27,11 @@ public class Main {
 					stack.pop();
 				}
 			}
-			if (!flag && stack.isEmpty()) {
-				list.add("YES");
+			if (flag || !stack.isEmpty()) {
+				bw.write("NO\n");
 			} else {
-				list.add("NO");
+				bw.write("YES\n");
 			}
-		}
-		for (String s : list) {
-			bw.write(s);
-			bw.newLine();
 		}
 		bw.flush();
 		bw.close();
