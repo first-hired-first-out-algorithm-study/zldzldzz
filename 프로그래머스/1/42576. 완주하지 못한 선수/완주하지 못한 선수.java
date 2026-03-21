@@ -9,9 +9,9 @@ class Solution {
         for (String s : completion) {
 			result.put(s, result.get(s) - 1);
 		}
-        for (String s : result.keySet()) {
-			if (result.get(s) != 0) {
-				return s;
+        for (Map.Entry<String, Integer> entry : result.entrySet()) {
+			if (entry.getValue() != 0) {
+				return entry.getKey();
 			}
 		}
        return "";
